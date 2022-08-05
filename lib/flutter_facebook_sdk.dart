@@ -205,4 +205,76 @@ class FlutterFacebookSdk {
         .invokeMethod("setAdvertiserTracking", {"enabled": isEnabled});
     return result;
   }
+
+  /// Logs Rated
+  Future<bool> logRated() async {
+    await _channel.invokeMethod("logRated");
+    return true;
+  }
+
+  /// Logs Donate
+  Future<bool> logDonate() async {
+    await _channel.invokeMethod("logDonate");
+    return true;
+  }
+
+  /// Logs Contact
+  Future<bool> logContact() async {
+    await _channel.invokeMethod("logContact");
+    return true;
+  }
+
+  /// Logs Refinement
+  Future<bool> logRefinement() async {
+    await _channel.invokeMethod("logRefinement");
+    return true;
+  }
+
+  /// Logs Care
+  Future<bool> logCare() async {
+    await _channel.invokeMethod("logCare");
+    return true;
+  }
+
+  /// Logs Subscribe
+  Future<bool> logSubscribe() async {
+    await _channel.invokeMethod("logSubscribe");
+    return true;
+  }
+
+  /// Logs Cash Fund
+  Future<bool> logCashFund() async {
+    await _channel.invokeMethod("logCashFund");
+    return true;
+  }
+
+  /// Logs Sell Vehicle
+  Future<bool> logSellVehicle() async {
+    await _channel.invokeMethod("logSellVehicle");
+    return true;
+  }
+
+  /// Logs Funding Services
+  Future<bool> logFundingServices() async {
+    await _channel.invokeMethod("logFundingServices");
+    return true;
+  }
+
+  /// Logs Add Provider
+  Future<bool> logAddProvider() async {
+    await _channel.invokeMethod("logAddProvider");
+    return true;
+  }
+
+  /// Logs Renew STNK
+  Future<bool> logRenewSTNK() async {
+    await _channel.invokeMethod("logRenewSTNK");
+    return true;
+  }
+
+  /// Logs My Vehicle
+  Future<bool> logMyVehicle() async {
+    await _channel.invokeMethod("logMyVehicle");
+    return true;
+  }
 }
