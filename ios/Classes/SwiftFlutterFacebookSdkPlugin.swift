@@ -291,7 +291,42 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
                 result(true)
                 return
             }
-            
+        case "logRated":
+            AppEvents.shared.logRated()
+            result(true)
+        case "logDonate":
+            AppEvents.shared.logDonate()
+            result(true)
+        case "logContact":
+            AppEvents.shared.logContact()
+            result(true)
+        case "logRefinement":
+            AppEvents.shared.logRefinement()
+            result(true)
+        case "logCare":
+            AppEvents.shared.logCare()
+            result(true)
+        case "logSubscribe":
+            AppEvents.shared.logSubscribe()
+            result(true)
+        case "logCashFund":
+            AppEvents.shared.logCashFund()
+            result(true)
+        case "logSellVehicle":
+            AppEvents.shared.logSellVehicle()
+            result(true)
+        case "logFundingServices":
+            AppEvents.shared.logFundingServices()
+            result(true)
+        case "logAddProvider":
+            AppEvents.shared.logAddProvider()
+            result(true)
+        case "logRenewSTNK":
+            AppEvents.shared.logRenewSTNK()
+            result(true)
+        case "logMyVehicle":
+            AppEvents.shared.logMyVehicle()
+            result(true)
         default:
             result(FlutterMethodNotImplemented)
         }
