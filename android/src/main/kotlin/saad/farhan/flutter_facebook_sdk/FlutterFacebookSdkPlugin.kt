@@ -141,7 +141,10 @@ class FlutterFacebookSdkPlugin : FlutterPlugin, MethodCallHandler, StreamHandler
                 logger.logEvent(AppEventsConstants.EVENT_NAME_CUSTOMIZE_PRODUCT)
             }
             "logFundingServices" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_LEVEL_ACHIEVED)
+                val args = call.arguments as HashMap<String, Any>
+                val params = Bundle()
+                params.putString(AppEventsConstants.EVENT_NAME_LEVEL_ACHIEVED)
+                logger.logEvent(AppEventsConstants.EVENT_PARAM_LEVEL, params)
             }
             "logAddProvider" -> {
                 logger.logEvent(AppEventsConstants.EVENT_NAME_FIND_LOCATION)
