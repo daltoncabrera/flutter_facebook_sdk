@@ -254,11 +254,11 @@ class FlutterFacebookSdk {
     return true;
   }
 
-  /// Logs Funding Services
-  Future<bool> logFundingServices({required String type}) async {
-    await _channel.invokeMethod("logFundingServices", {"type": type});
-    return true;
-  }
+//   /// Logs Funding Services
+//   Future<bool> logFundingServices({required String type}) async {
+//     await _channel.invokeMethod("logFundingServices", {"type": type});
+//     return true;
+//   }
 
   /// Logs Add Provider
   Future<bool> logAddProvider() async {
