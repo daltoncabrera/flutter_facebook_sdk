@@ -256,7 +256,7 @@ class FlutterFacebookSdk {
 
   /// Logs Funding Services
   Future<bool> logFundingServices({required String type}) async {
-    await _channel.invokeMethod("logFundingServices", {"type": type});
+    await _channel.invokeMethod("logFundingServices");
     return true;
   }
 
