@@ -315,9 +315,9 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         case "logSellVehicle":
             AppEvents.shared.logSellVehicle()
             result(true)
-        case "logFundingServices":
-            AppEvents.shared.logFundingServices()
-            result(true)
+//         case "logFundingServices":
+//             AppEvents.shared.logFundingServices()
+//             result(true)
         case "logAddProvider":
             AppEvents.shared.logAddProvider()
             result(true)
