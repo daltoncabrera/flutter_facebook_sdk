@@ -331,7 +331,7 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
             }
             if let myArgs = args as? [String: Any],
                let parameters = myArgs["parameters"] as? Dictionary<String, Any>{
-                AppEvents.shared.logEvent(.viewedContent, parameters: parameters)
+                AppEvents.shared.logEvent(.viewedContent, parameters)
                 result(true)
                 return
             }
