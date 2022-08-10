@@ -292,40 +292,40 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
                 return
             }
         case "logRated":
-            AppEvents.shared.logRated()
+            AppEvents.shared.logEvent(.rated)
             result(true)
         case "logDonate":
-            AppEvents.shared.logDonate()
+            AppEvents.shared.logEvent(.donate)
             result(true)
         case "logContact":
-            AppEvents.shared.logContact()
+            AppEvents.shared.logEvent(.contact)
             result(true)
         case "logRefinement":
-            AppEvents.shared.logRefinement()
+            AppEvents.shared.logEvent(.startTrial)
             result(true)
         case "logCare":
-            AppEvents.shared.logCare()
+            AppEvents.shared.logEvent(.spentCredits)
             result(true)
         case "logSubscribe":
-            AppEvents.shared.logSubscribe()
+            AppEvents.shared.logEvent(.subscribe)
             result(true)
         case "logCashFund":
-            AppEvents.shared.logCashFund()
+            AppEvents.shared.logEvent(.purchased)
             result(true)
         case "logSellVehicle":
-            AppEvents.shared.logSellVehicle()
+            AppEvents.shared.logEvent(.customizeProduct)
             result(true)
-//         case "logFundingServices":
-//             AppEvents.shared.logFundingServices()
-//             result(true)
+        case "logFundingServices":
+            AppEvents.shared.logEvent(.achievedLevel)
+            result(true)
         case "logAddProvider":
-            AppEvents.shared.logAddProvider()
+            AppEvents.shared.logEvent(.findLocation)
             result(true)
         case "logRenewSTNK":
-            AppEvents.shared.logRenewSTNK()
+            AppEvents.shared.logEvent(.addedToCart)
             result(true)
         case "logMyVehicle":
-            AppEvents.shared.logMyVehicle()
+            AppEvents.shared.logEvent(.viewContent)
             result(true)
         default:
             result(FlutterMethodNotImplemented)
