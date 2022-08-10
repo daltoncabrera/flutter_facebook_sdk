@@ -183,7 +183,7 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         case "getDeepLinkUrl":
             
             result(deepLinkUrl)
-        case "logViewedContent", "logAddToCart", "logAddToWishlist":
+        case "logMyVehicle", "logViewedContent", "logAddToCart", "logAddToWishlist":
             guard let args = call.arguments else {
                 result(false)
                 return
@@ -201,6 +201,8 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
                     self.logEvent(contentType: contentType, contentData: contentData, contentId: contentId, currency: currency, price: price, type: "addToCart")
                 }else if(call.method.elementsEqual("logAddToWishlist")){
                     self.logEvent(contentType: contentType, contentData: contentData, contentId: contentId, currency: currency, price: price, type: "addToWishlist")
+                }else if (call.method.elementsEqual("logMyVehicle")){
+                    self.logEvent(contentType: contentType, contentData: contentData, contentId: contentId, currency: currency, price: price, type: "viewContent")
                 }
                 result(true)
                 return
@@ -324,16 +326,6 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         case "logRenewSTNK":
             AppEvents.shared.logEvent(.addedToCart)
             result(true)
-        case "logMyVehicle":
-            guard let args = call.arguments else {
-                result(false)
-                return
-            }
-            if let parameters = args as? [String: Any]{
-                AppEvents.shared.logEvent(.viewedContent, parameters: parameters)
-                result(true)
-                return
-            }
         default:
             result(FlutterMethodNotImplemented)
         }
