@@ -325,7 +325,13 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
             AppEvents.shared.logEvent(.addedToCart)
             result(true)
         case "logMyVehicle":
-            AppEvents.shared.logEvent(.viewContent)
+            guard let args = call.arguments else {
+                result(false)
+                return
+            }
+            let myArgs = args as? [String: Any]
+            let parameters = myArgs["parameters"] as? Dictionary<String, Any>
+            AppEvents.shared.logEvent(.viewedContent, parameters: parameters)
             result(true)
         default:
             result(FlutterMethodNotImplemented)
