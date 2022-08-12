@@ -103,7 +103,7 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         AppEvents.shared.logEvent(.completedRegistration, parameters: parameters)
     }
     
-    func logPurchase(amount:Double, currency:String, parameters: Dictionary<AppEvents.ParameterName, Any>){
+    func logPurchase(amount:Double, currency:String, parameters: Dictionary<String,Any>){
         AppEvents.shared.logPurchase(amount: amount, currency: currency, parameters: parameters)
     }
     
@@ -183,7 +183,7 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         case "getDeepLinkUrl":
             
             result(deepLinkUrl)
-        case "logMyVehicle", "logViewedContent", "logAddToCart", "logAddToWishlist":
+        case "logViewedContent", "logAddToCart", "logAddToWishlist", "logMyVehicle:
             guard let args = call.arguments else {
                 result(false)
                 return
@@ -234,7 +234,7 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
             if let myArgs = args as? [String: Any],
                let amount = myArgs["amount"] as? Double,
                let currency = myArgs["currency"] as? String,
-               let parameters = myArgs["parameters"] as? Dictionary<AppEvents.ParameterName, Any>{
+               let parameters = myArgs["parameters"] as? Dictionary<String, Any>{
                 self.logPurchase(amount: amount, currency: currency, parameters: parameters)
                 result(true)
                 return
@@ -326,6 +326,10 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         case "logRenewSTNK":
             AppEvents.shared.logEvent(.addedToCart)
             result(true)
+        default:
+            result(FlutterMethodNotImplemented)
+        }
+            
         default:
             result(FlutterMethodNotImplemented)
         }
