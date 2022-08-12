@@ -103,20 +103,8 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         AppEvents.shared.logEvent(.completedRegistration, parameters: parameters)
     }
     
-    func logPurchase(amount:Double, 
-                     contentType: String,
-                     contentData: String,
-                     contentId: String,
-                     currency: String,
-                     numItems: Int){
-        let newParameters = [
-            AppEvents.ParameterName.content: contentData,
-            AppEvents.ParameterName.contentID: contentId,
-            AppEvents.ParameterName.contentType: contentType,
-            AppEvents.ParameterName.numItems: NSNumber(value:numItems),
-            AppEvents.ParameterName.currency: currency
-        ] as [AppEvents.ParameterName : Any]
-        AppEvents.shared.logPurchase(amount: amount, currency: currency, parameters: newParameters)
+    func logPurchase(amount: amount, currency: currency, contentType: String, contentData: String, contentId: String){
+        AppEvents.shared.logPurchase(amount: amount, currency: currency, contentType: contentType, contentData: contentData, contentId: contentId)
     }
     
     func logSearchEvent(
@@ -182,8 +170,6 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         
     }
     
-    
-    
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         case "initializeSDK":
@@ -248,9 +234,8 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
                let currency = myArgs["currency"] as? String,
                let contentType = myArgs["contentType"] as? String,
                let contentData = myArgs["contentData"] as? String,
-               let contentId = myArgs["contentId"] as? String,
-               let numItems = myArgs["numItems"] as? Int{
-                self.logPurchase(amount:amount, contentType: contentType, contentData: contentData, contentId: contentId, currency: currency, numItems: numItems)
+               let contentId = myArgs["contentId"] as? String{
+                self.logPurchase(amount:amount, currency: currency, contentType: contentType, contentData: contentData, contentId: contentId)
                 result(true)
                 return
             }
