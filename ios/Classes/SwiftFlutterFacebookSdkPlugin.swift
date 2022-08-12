@@ -104,7 +104,7 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
     }
     
     func logPurchase(amount:Double, currency:String){
-        AppEvents.logPurchase(amount, currency: currency)
+        AppEvents.shared.logEvent(.purchased, amount, currency: currency)
     }
     
     func logSearchEvent(
