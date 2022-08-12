@@ -103,8 +103,8 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         AppEvents.shared.logEvent(.completedRegistration, parameters: parameters)
     }
     
-    func logPurchase(amount: amount, currency: currency, contentType: String, contentData: String, contentId: String){
-        AppEvents.shared.logPurchase(amount, currency: currency, contentType: contentType, contentData: contentData, contentId: contentId)
+    func logPurchase(amount:Double, currency:String){
+        AppEvents.logPurchase(amount, currency: currency)
     }
     
     func logSearchEvent(
@@ -231,11 +231,8 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
             }
             if let myArgs = args as? [String: Any],
                let amount = myArgs["amount"] as? Double,
-               let currency = myArgs["currency"] as? String,
-               let contentType = myArgs["contentType"] as? String,
-               let contentData = myArgs["contentData"] as? String,
-               let contentId = myArgs["contentId"] as? String{
-                self.logPurchase(amount:amount, currency: currency, contentType: contentType, contentData: contentData, contentId: contentId)
+               let currency = myArgs["currency"] as? String{
+                self.logPurchase(amount: amount, currency: currency)
                 result(true)
                 return
             }
