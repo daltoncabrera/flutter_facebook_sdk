@@ -329,10 +329,6 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         default:
             result(FlutterMethodNotImplemented)
         }
-            
-        default:
-            result(FlutterMethodNotImplemented)
-        }
         
     }
 }
