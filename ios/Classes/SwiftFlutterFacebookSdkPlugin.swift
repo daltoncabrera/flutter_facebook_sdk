@@ -178,12 +178,12 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
             ApplicationDelegate.shared.initializeSDK()
             result(nil)
             return
-        case "getPlatformVersion":
+         case "getPlatformVersion":
             result("iOS " + UIDevice.current.systemVersion)
         case "getDeepLinkUrl":
             
             result(deepLinkUrl)
-        case "logViewedContent", "logAddToCart", "logAddToWishlist", "logMyVehicle:
+        case "logMyVehicle", "logViewedContent", "logAddToCart", "logAddToWishlist":
             guard let args = call.arguments else {
                 result(false)
                 return
