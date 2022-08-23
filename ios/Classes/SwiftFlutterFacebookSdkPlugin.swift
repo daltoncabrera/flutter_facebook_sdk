@@ -103,9 +103,10 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
         AppEvents.shared.logEvent(.completedRegistration, parameters: parameters)
     }
     
-//     func logPurchase(amount:Double, currency:String){
-//         AppEvents.shared.logEvent(.purchased, amount, currency: currency)
-//     }
+    // func logPurchase(amount:Double, currency:String){
+    //     //AppEvents.shared.logEvent(.purchased, amount, currency: currency)
+    //      AppEvents.shared.logPurchase(amount: amount, currency: currency, parameters: parameters)
+    // }
     
     func logSearchEvent(
         contentType: String,
@@ -224,18 +225,20 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
                 result(true)
                 return
             }
-//         case "logPurchase":
-//             guard let args = call.arguments else {
-//                 result(false)
-//                 return
-//             }
-//             if let myArgs = args as? [String: Any],
-//                let amount = myArgs["amount"] as? Double,
-//                let currency = myArgs["currency"] as? String{
-//                 self.logPurchase(amount: amount, currency: currency)
-//                 result(true)
-//                 return
-//             }
+        case "logPurchase":
+            guard let args = call.arguments else {
+                result(false)
+                return
+            }
+            if let myArgs = args as? [String: Any],
+               let amount = myArgs["amount"] as? Double,
+               let currency = myArgs["currency"] as? String{
+            //    self.logPurchase(amount: amount, currency: currency)
+              let parameters = myArgs["params"] as? [AppEvents.ParameterName: Any] ?? [AppEvents.ParameterName: Any]()
+            AppEvents.shared.logPurchase(amount: amount, currency: currency, parameters: parameters)
+                result(true)
+                return
+            }
             
         case "logSearch":
             guard let args = call.arguments else {

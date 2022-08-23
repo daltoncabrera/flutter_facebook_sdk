@@ -119,44 +119,24 @@ class FlutterFacebookSdkPlugin : FlutterPlugin, MethodCallHandler, StreamHandler
             "logRated" -> {
                 logger.logEvent(AppEventsConstants.EVENT_NAME_RATED)
             }
-            "logDonate" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_DONATE)
-            }
-            "logContact" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_CONTACT)
-            }
-            "logRefinement" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_START_TRIAL)
-            }
-            "logCare" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_SPENT_CREDITS)
-            }
-            "logSubscribe" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_SUBSCRIBE)
-            }
-            "logCashFund" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_PURCHASED)
-            }
-            "logSellVehicle" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_CUSTOMIZE_PRODUCT)
-            }
-            "logFundingServices" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_ACHIEVED_LEVEL)
-            }
-            "logAddProvider" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_FIND_LOCATION)
-            }
-            "logRenewSTNK" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_ADDED_TO_CART)
-            }
-            "logMyVehicle" -> {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT)
-            }
+            "setAdvertiserTracking" -> handleSetAdvertiserTracking(call, result)
+          
             else -> {
                 result.notImplemented()
             }
         }
     }
+
+  //not an android implementation as of yet
+  private fun handleSetAdvertiserTracking(call: MethodCall, result: Result) {
+    // var args = call.arguments;
+   // var enabledArg = args["enabled"] as String?
+    var isEnabled = true // enabledArg != null && enabledArg!!;
+    FacebookSdk.setAutoInitEnabled(isEnabled)
+    FacebookSdk.setAdvertiserIDCollectionEnabled(isEnabled);
+    FacebookSdk.fullyInitialize()
+    result.success(true);
+  }
 
     private fun logGenericEvent(args : HashMap<String, Any>){
         val eventName = args["eventName"] as? String
@@ -221,7 +201,7 @@ class FlutterFacebookSdkPlugin : FlutterPlugin, MethodCallHandler, StreamHandler
 
     private fun initFbSdk() {
         FacebookSdk.setAutoInitEnabled(true)
-        FacebookSdk.fullyInitialize()
+        //FacebookSdk.fullyInitialize()
         logger = AppEventsLogger.newLogger(context)
 
         val targetUri = AppLinks.getTargetUrlFromInboundIntent(context, activityPluginBinding!!.activity.intent)
